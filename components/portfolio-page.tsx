@@ -584,10 +584,13 @@ export default function PortfolioPage() {
                   <span className="header-link-label block">About Me</span>
                   <span className="header-link-line mt-1 block h-px w-full bg-neutral-100" />
                 </Link>
-                <span className="header-link nav-animate cursor-pointer">
+                <Link
+                  href="/websites"
+                  className="header-link nav-animate cursor-pointer"
+                >
                   <span className="header-link-label block">Projects</span>
                   <span className="header-link-line mt-1 block h-px w-full bg-neutral-100" />
-                </span>
+                </Link>
                 <span className="header-link nav-animate cursor-pointer">
                   <span className="header-link-label block">Services</span>
                   <span className="header-link-line mt-1 block h-px w-full bg-neutral-100" />

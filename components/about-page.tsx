@@ -1,41 +1,220 @@
 'use client'
 
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import Image from 'next/image'
+import { useRef, useState, useEffect } from 'react'
 import gsap from 'gsap'
+import wordpressLogo from '../images/wordpresslogo.jpg'
+import shopifyLogo from '../images/shopifylogo.png'
+import reactLogo from '../images/reactlogo.png'
+import nextjsLogo from '../images/nextjslogo.png'
+import gsapLogo from '../images/gsaplogo.png'
+import webflowLogo from '../images/webflowlogo.png'
+import supabaseLogo from '../images/supabaselogo.png'
+import aspnetLogo from '../images/aspnetlogo.png'
+import nodejsLogo from '../images/nodejs-logo.svg'
+import expressLogo from '../images/expressjslogo.png'
+import postgresqlLogo from '../images/postgreslogo.png'
+import prismaLogo from '../images/prismalogo.svg'
+import firebaseLogo from '../images/firebaselogo.webp'
+import graphqlLogo from '../images/graphql.png'
+import javascriptLogo from '../images/javascriptlogo.webp'
+import cssLogo from '../images/csslogo.webp'
+import framerLogo from '../images/framerlogo.jpg'
+import googleSearchConsoleLogo from '../images/googlesearchconsole.png'
+import googleAnalytics4Logo from '../images/googleanalytics4logo.avif'
+import semrushLogo from '../images/semrushlogo.png'
+import screamingFrogLogo from '../images/screamingfroglogo.png'
+import pagespeedInsightsLogo from '../images/pagspeedinsightslogo.webp'
+import lighthouseLogo from '../images/lighthouselogo.png'
+import richResultsTestLogo from '../images/richresultstestslogo.png'
 import { useGSAP } from '@gsap/react'
 import { useRouter } from 'next/navigation'
 
 gsap.registerPlugin(useGSAP)
 
+const roles = ['Full Stack Developer', 'SEO Specialist', 'Creative Developer', 'Web Animator']
+
 export default function AboutPage() {
   const pageRef = useRef<HTMLElement>(null)
   const isPageTransitioningRef = useRef(false)
+  const roleRef = useRef<HTMLSpanElement>(null)
   const router = useRouter()
+  const [roleIndex, setRoleIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const el = roleRef.current
+      if (!el) return
+      gsap.to(el, {
+        yPercent: -120,
+        autoAlpha: 0,
+        duration: 0.28,
+        ease: 'power2.in',
+        onComplete: () => {
+          setRoleIndex((prev) => (prev + 1) % roles.length)
+          gsap.fromTo(
+            el,
+            { yPercent: 120, autoAlpha: 0 },
+            { yPercent: 0, autoAlpha: 1, duration: 0.32, ease: 'power2.out' }
+          )
+        }
+      })
+    }, 2600)
+    return () => clearInterval(interval)
+  }, [])
   const techTitle = 'TECH STACKS'
   const placeholderCards = [
-    { title: 'WordPress', subtitle: 'Image coming soon' },
-    { title: 'Shopify', subtitle: 'Image coming soon' },
-    { title: 'React', subtitle: 'Image coming soon' },
-    { title: 'Next.js', subtitle: 'Image coming soon' },
-    { title: 'GSAP', subtitle: 'Image coming soon' },
-    { title: 'Webflow', subtitle: 'Image coming soon' },
-    { title: 'Supabase', subtitle: 'Image coming soon' },
-    { title: 'ASP.NET', subtitle: 'Image coming soon' },
-    { title: 'JavaScript', subtitle: 'Image coming soon' },
-    { title: 'CSS', subtitle: 'Image coming soon' },
-    { title: 'Framer', subtitle: 'Image coming soon' },
-    { title: 'Google Search Console', subtitle: 'Image coming soon' },
-    { title: 'Google Analytics 4', subtitle: 'Image coming soon' },
-    { title: 'Semrush', subtitle: 'Image coming soon' },
-    { title: 'Screaming Frog', subtitle: 'Image coming soon' },
-    { title: 'PageSpeed Insights', subtitle: 'Image coming soon' },
-    { title: 'Lighthouse', subtitle: 'Image coming soon' },
-    { title: 'Rich Results Test', subtitle: 'Image coming soon' }
+    {
+      title: 'WordPress',
+      image: wordpressLogo,
+      description: 'Custom themes, plugins & content-driven sites.',
+      category: 'frontend'
+    },
+    {
+      title: 'Shopify',
+      image: shopifyLogo,
+      description: 'E-commerce storefronts with custom Liquid themes.',
+      category: 'frontend'
+    },
+    {
+      title: 'React',
+      image: reactLogo,
+      description: 'Component-based UIs with hooks & state management.',
+      category: 'frontend'
+    },
+    {
+      title: 'Next.js',
+      image: nextjsLogo,
+      description: 'Full-stack React apps with SSR, SSG & API routes.',
+      category: 'frontend'
+    },
+    {
+      title: 'GSAP',
+      image: gsapLogo,
+      description: 'High-performance animations & scroll interactions.',
+      category: 'frontend'
+    },
+    {
+      title: 'Webflow',
+      image: webflowLogo,
+      description: 'No-code visual builds with CMS & interactions.',
+      category: 'frontend'
+    },
+    {
+      title: 'JavaScript',
+      image: javascriptLogo,
+      description: 'Core scripting for dynamic web experiences.',
+      category: 'frontend'
+    },
+    {
+      title: 'CSS',
+      image: cssLogo,
+      description: 'Responsive layouts, animations & design systems.',
+      category: 'frontend'
+    },
+    {
+      title: 'Framer',
+      image: framerLogo,
+      description: 'Interactive prototypes & production-ready sites.',
+      category: 'frontend'
+    },
+    {
+      title: 'Supabase',
+      image: supabaseLogo,
+      description: 'Open-source backend with auth, DB & storage.',
+      category: 'backend'
+    },
+    {
+      title: 'ASP.NET',
+      image: aspnetLogo,
+      description: 'Scalable server-side apps & REST APIs in C#.',
+      category: 'backend'
+    },
+    {
+      title: 'Node.js',
+      image: nodejsLogo,
+      description: 'Server-side JavaScript for scalable network apps.',
+      category: 'backend'
+    },
+    {
+      title: 'Express',
+      image: expressLogo,
+      description: 'Minimal, flexible Node.js web application framework.',
+      category: 'backend'
+    },
+    {
+      title: 'PostgreSQL',
+      image: postgresqlLogo,
+      description: 'Powerful open-source relational database system.',
+      category: 'backend'
+    },
+    {
+      title: 'Prisma',
+      image: prismaLogo,
+      description: 'Type-safe ORM for Node.js & TypeScript projects.',
+      category: 'backend'
+    },
+    {
+      title: 'Firebase',
+      image: firebaseLogo,
+      description: 'Google BaaS with auth, Firestore & realtime DB.',
+      category: 'backend'
+    },
+    {
+      title: 'GraphQL',
+      image: graphqlLogo,
+      description: 'Flexible query language for APIs & data graphs.',
+      category: 'backend'
+    },
+    {
+      title: 'Google Search Console',
+      image: googleSearchConsoleLogo,
+      description: 'Monitor indexing, crawl issues & search performance.',
+      category: 'seo'
+    },
+    {
+      title: 'Google Analytics 4',
+      image: googleAnalytics4Logo,
+      description: 'Event-based tracking for user behavior & conversions.',
+      category: 'seo'
+    },
+    {
+      title: 'Semrush',
+      image: semrushLogo,
+      description: 'Keyword research, competitor audits & rank tracking.',
+      category: 'seo'
+    },
+    {
+      title: 'Screaming Frog',
+      image: screamingFrogLogo,
+      description: 'Technical SEO crawls for on-page & structural issues.',
+      category: 'seo'
+    },
+    {
+      title: 'PageSpeed Insights',
+      image: pagespeedInsightsLogo,
+      description: 'Core Web Vitals analysis & performance scoring.',
+      category: 'seo'
+    },
+    {
+      title: 'Lighthouse',
+      image: lighthouseLogo,
+      description: 'Automated audits for performance, SEO & accessibility.',
+      category: 'seo'
+    },
+    {
+      title: 'Rich Results Test',
+      image: richResultsTestLogo,
+      description: 'Validate structured data for rich search snippets.',
+      category: 'seo'
+    }
   ]
-  const [activeIndex, setActiveIndex] = useState(2)
+  const [activeCategory, setActiveCategory] = useState<'frontend' | 'backend' | 'seo'>('frontend')
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const totalCards = placeholderCards.length
+  const filteredCards = placeholderCards.filter((c) => c.category === activeCategory)
+  const totalCards = filteredCards.length
 
   const getCardOffset = (index: number) => {
     let offset = index - activeIndex
@@ -67,7 +246,25 @@ export default function AboutPage() {
 
         const wheelEvent = event as WheelEvent
         const currentScrollTop = pageElement?.scrollTop ?? 0
+        const scrollHeight = pageElement?.scrollHeight ?? 0
+        const clientHeight = pageElement?.clientHeight ?? 0
+        const atBottom = currentScrollTop + clientHeight >= scrollHeight - 10
 
+        // Scroll down at the bottom → go to websites
+        if (wheelEvent.deltaY >= 30 && atBottom) {
+          isPageTransitioningRef.current = true
+          window.sessionStorage.setItem('websites_from', 'about')
+          gsap.to('.about-content', {
+            yPercent: -100,
+            duration: 0.65,
+            ease: 'power3.inOut',
+            overwrite: 'auto',
+            onComplete: () => router.push('/websites')
+          })
+          return
+        }
+
+        // Scroll up at the top → go back to home
         if (wheelEvent.deltaY > -30) {
           return
         }
@@ -211,8 +408,8 @@ export default function AboutPage() {
               Home
             </Link>
             <span className="text-white">About Me</span>
-            <span className="text-neutral-400">Projects</span>
             <span className="text-neutral-400">Services</span>
+            <Link href="/websites" className="text-neutral-400 transition-colors hover:text-white">Projects</Link>
             <span className="text-neutral-400">Contact</span>
           </nav>
         </header>
@@ -222,6 +419,17 @@ export default function AboutPage() {
             <p className="about-animate text-xs uppercase tracking-[0.22em] text-neutral-400">
               About Me
             </p>
+            <div className="about-animate mt-4 flex items-center gap-2">
+              <span className="h-px w-6 bg-neutral-600" />
+              <div className="overflow-hidden">
+                <span
+                  ref={roleRef}
+                  className="inline-block text-sm font-medium uppercase tracking-[0.18em] text-neutral-300"
+                >
+                  {roles[roleIndex]}
+                </span>
+              </div>
+            </div>
             <p className="about-animate mt-7 max-w-3xl text-2xl leading-relaxed text-neutral-300 sm:text-3xl">
               I blend design, strategy, and engineering to create seamless digital experiences. As a
               full stack developer and SEO specialist with 4+ years of experience, I build stable,
@@ -242,9 +450,28 @@ export default function AboutPage() {
               <span className="tech-shimmer pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-transparent via-neutral-200/30 to-transparent blur-[1px]" />
             </span>
           </h2>
+
+          <div className="mt-8 flex gap-3">
+            {(['frontend', 'backend', 'seo'] as const).map((cat) => (
+              <button
+                key={cat}
+                onClick={() => {
+                  setActiveCategory(cat)
+                  setActiveIndex(0)
+                }}
+                className={`rounded-full border px-5 py-1.5 text-xs uppercase tracking-[0.18em] transition-all duration-200 ${
+                  activeCategory === cat
+                    ? 'border-neutral-300 bg-neutral-100 text-neutral-900'
+                    : 'border-neutral-700 text-neutral-400 hover:border-neutral-500 hover:text-neutral-200'
+                }`}
+              >
+                {cat === 'seo' ? 'SEO' : cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </button>
+            ))}
+          </div>
           <div className="relative mt-60 h-[690px] overflow-visible">
             <div className="absolute inset-0 perspective-[1400px]">
-              {placeholderCards.map((card, index) => {
+              {filteredCards.map((card, index) => {
                 const offset = getCardOffset(index)
                 const abs = Math.abs(offset)
                 const hidden = abs > 1
@@ -271,8 +498,12 @@ export default function AboutPage() {
                     <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400">
                       {card.title}
                     </p>
-                    <div className="mt-6 h-72 rounded-2xl border border-neutral-700/70 bg-gradient-to-br from-neutral-700/60 via-neutral-800 to-neutral-900" />
-                    <p className="mt-6 text-base text-neutral-200">{card.subtitle}</p>
+                    <div className="relative mt-6 h-56 overflow-hidden rounded-2xl border border-neutral-200/20 bg-white p-4">
+                      <Image src={card.image} alt={card.title} fill className="object-contain" />
+                    </div>
+                    <p className="mt-4 text-sm leading-relaxed text-neutral-400">
+                      {card.description}
+                    </p>
                   </article>
                 )
               })}
